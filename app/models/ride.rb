@@ -4,7 +4,7 @@ class Ride < ActiveRecord::Base
   belongs_to :attraction
 
   def take_ride
-    enough_tickets, tall_enough = meet_requirements
+		enough_tickets, tall_enough = meet_requirements
     if enough_tickets && tall_enough
       start_ride
     elsif tall_enough && !enough_tickets
@@ -17,7 +17,9 @@ class Ride < ActiveRecord::Base
   end
 
   def meet_requirements
-    enough_tickets, tall_enough = false
+		enough_tickets = false
+		tall_enough = false
+		
     if self.user.tickets >= self.attraction.tickets
       enough_tickets = true
     end
